@@ -8,23 +8,23 @@
 import Foundation
 
 struct Prediction {
-    let date: String
-    let id: Int
+    var date: String
+    var id: Int
     
-    let predict1: Predict
-    let predict2: Predict
-    let predict3: Predict
+    var predict0: Predict
+    var predict1: Predict
+    var predict2: Predict
     
 }
 
 struct Predict {
-    let uuid: String
-    let dateAndTime: String
-    let name: String
-    let org: String
-    let predict: String
-    let odd: String
-    let isFree: Bool
-    let isOk: Bool
-    let result: String
+    var uuid: String
+    var dateAndTime: String
+    var name: String
+    var org: String
+    var predict: String
+    var odd: String
+    var isFree: Bool
+    var isOk: Bool
+    var result: String
 }

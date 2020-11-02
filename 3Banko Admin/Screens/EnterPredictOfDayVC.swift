@@ -11,9 +11,12 @@ class EnterPredictOfDayVC: UIViewController {
     
     var date: String = ""
     var id = 0
-    var predict1: Predict?
-    var predict2: Predict?
-    var predict3: Predict?
+
+    var predictArray = [
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0"),
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0"),
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0")
+    ]
     
     var cellTextLabels = ["UUID","Tarih ve Saat", "Kiminle kim?", "Organizasyon", "Tahmin", "Oran", "Jetonlu mu?", "Durum", "Sonuc"]
     
@@ -43,8 +46,8 @@ class EnterPredictOfDayVC: UIViewController {
     }
     
     @objc func doneAction() {
-        let prediction = Prediction(date: self.date, id: self.id, predict1: self.predict1!, predict2: self.predict2!, predict3: self.predict3!)
-        print("DEBUG: \(prediction)")
+        let prediction = Prediction(date: date, id: id, predict0: predictArray[0], predict1: predictArray[1], predict2: predictArray[2])
+        print("DEBUG: Prediction of day: \(prediction)")
         print("DEBUG: Done predict button.")
     }
     
@@ -68,6 +71,29 @@ class EnterPredictOfDayVC: UIViewController {
     }
     
     
+    private func setDateAndTime(cell: SetFieldCell, indexPath: IndexPath) {
+        let ac = UIAlertController(title: "Tarih ve Saat", message: "", preferredStyle: .alert)
+        ac.addTextField(configurationHandler: nil)
+        
+        let okAction = UIAlertAction(title: "Tamam", style: .default) { [weak self, weak ac] action in
+            guard let self = self else { return }
+            guard let textField = ac?.textFields?[0] else { return }
+            guard let text = textField.text else { return }
+            if text.isEmpty {
+                return
+            } else {
+                self.predictArray[indexPath.section - 1].dateAndTime = text
+                cell.detailTextLabel?.text = self.predictArray[indexPath.section - 1].dateAndTime
+                
+            }
+        }
+        
+        ac.view.layoutIfNeeded()
+        ac.addAction(okAction)
+        ac.addAction(UIAlertAction(title: "Iptal", style: .cancel))
+        
+        present(ac, animated: true)
+    }
     
     private func setDate() {
         let ac = UIAlertController(title: "Tarih", message: "Tahmin tarihini ayarla", preferredStyle: .alert)
@@ -124,7 +150,21 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
         
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SetFieldCell
             cell.textLabel?.text = cellTextLabels[indexPath.row]
-            cell.detailTextLabel?.text = "Ayarla"
+            
+            switch indexPath.row {
+            case 0: cell.detailTextLabel?.text = "Goster"
+            case 1: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].dateAndTime
+            case 2: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].name
+            case 3: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].org
+            case 4: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].predict
+            case 5: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].odd
+            case 6: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isFree ? "Evet": "Hayir"
+            case 7: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isOk ? "Tuttu": "Tutmadi"
+            case 8: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].result
+            default: fatalError("unknowns row")
+            }
+            
+            
             return cell
         default: fatalError()
         }
@@ -145,6 +185,7 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        
         switch indexPath.section {
         case 0:
             switch indexPath.row {
@@ -154,8 +195,8 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
             }
         case 1,2,3:
             switch indexPath.row {
-            case 0: print("uuid")
-            case 1: print("tarih saat")
+            case 0: print("DEBUG: uuid of Tahmin: \(indexPath.section) = \(predictArray[indexPath.section-1].uuid)")
+            case 1: setDateAndTime(cell: tableView.cellForRow(at: indexPath) as! SetFieldCell, indexPath: indexPath)
             case 2: print("kimle kim")
             case 3: print("organization")
             case 4: print("tahmin")
