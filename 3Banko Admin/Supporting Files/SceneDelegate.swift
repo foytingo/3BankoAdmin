@@ -19,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene
         let navi = UINavigationController()
-        navi.viewControllers = [EnterPredictOfDayVC()]
+        navi.navigationBar.prefersLargeTitles = true
+        navi.viewControllers = [PredictsVC()]
         window?.rootViewController = navi
         window?.makeKeyAndVisible()
     }

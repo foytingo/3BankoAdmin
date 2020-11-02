@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */; };
+		462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591C32550192400DCB4C5 /* PredictsVC.swift */; };
 		46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E125500D2C0090B458 /* AppDelegate.swift */; };
 		46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E325500D2C0090B458 /* SceneDelegate.swift */; };
 		46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EA25500D2E0090B458 /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 
 /* Begin PBXFileReference section */
 		46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPredictOfDayVC.swift; sourceTree = "<group>"; };
+		462591C32550192400DCB4C5 /* PredictsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictsVC.swift; sourceTree = "<group>"; };
 		46D933DE25500D2C0090B458 /* 3Banko Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3Banko Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D933E125500D2C0090B458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46D933E325500D2C0090B458 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,6 +41,7 @@
 			isa = PBXGroup;
 			children = (
 				46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */,
+				462591C32550192400DCB4C5 /* PredictsVC.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -151,6 +154,7 @@
 			files = (
 				46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */,
 				46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */,
+				462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */,
 				46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
