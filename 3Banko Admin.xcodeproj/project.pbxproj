@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */; };
 		462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591C32550192400DCB4C5 /* PredictsVC.swift */; };
+		462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591C925502FBB00DCB4C5 /* Prediction.swift */; };
+		462591CF2550528900DCB4C5 /* SetFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591CE2550528800DCB4C5 /* SetFieldCell.swift */; };
 		46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E125500D2C0090B458 /* AppDelegate.swift */; };
 		46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E325500D2C0090B458 /* SceneDelegate.swift */; };
 		46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EA25500D2E0090B458 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPredictOfDayVC.swift; sourceTree = "<group>"; };
 		462591C32550192400DCB4C5 /* PredictsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictsVC.swift; sourceTree = "<group>"; };
+		462591C925502FBB00DCB4C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
+		462591CE2550528800DCB4C5 /* SetFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFieldCell.swift; sourceTree = "<group>"; };
 		46D933DE25500D2C0090B458 /* 3Banko Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3Banko Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D933E125500D2C0090B458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46D933E325500D2C0090B458 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -57,6 +61,22 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		462591CC2550307000DCB4C5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				462591C925502FBB00DCB4C5 /* Prediction.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		462591D2255056A300DCB4C5 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				462591CE2550528800DCB4C5 /* SetFieldCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		46D933D525500D2C0090B458 = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +99,8 @@
 				4625919C2550126900DCB4C5 /* Supporting Files */,
 				46D933EF25500D2E0090B458 /* Info.plist */,
 				462591992550125E00DCB4C5 /* Screens */,
+				462591CC2550307000DCB4C5 /* Models */,
+				462591D2255056A300DCB4C5 /* Cells */,
 			);
 			path = "3Banko Admin";
 			sourceTree = "<group>";
@@ -152,7 +174,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				462591CF2550528900DCB4C5 /* SetFieldCell.swift in Sources */,
 				46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */,
+				462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */,
 				46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */,
 				462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */,
 				46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */,
