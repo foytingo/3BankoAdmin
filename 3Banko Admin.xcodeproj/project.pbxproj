@@ -7,20 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */; };
 		46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E125500D2C0090B458 /* AppDelegate.swift */; };
 		46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E325500D2C0090B458 /* SceneDelegate.swift */; };
-		46D933E625500D2C0090B458 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E525500D2C0090B458 /* ViewController.swift */; };
-		46D933E925500D2C0090B458 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46D933E725500D2C0090B458 /* Main.storyboard */; };
 		46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EA25500D2E0090B458 /* Assets.xcassets */; };
 		46D933EE25500D2E0090B458 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EC25500D2E0090B458 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPredictOfDayVC.swift; sourceTree = "<group>"; };
 		46D933DE25500D2C0090B458 /* 3Banko Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3Banko Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D933E125500D2C0090B458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46D933E325500D2C0090B458 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		46D933E525500D2C0090B458 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		46D933E825500D2C0090B458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		46D933EA25500D2E0090B458 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46D933ED25500D2E0090B458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46D933EF25500D2E0090B458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +35,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		462591992550125E00DCB4C5 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
+		4625919C2550126900DCB4C5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				46D933E125500D2C0090B458 /* AppDelegate.swift */,
+				46D933E325500D2C0090B458 /* SceneDelegate.swift */,
+				46D933EA25500D2E0090B458 /* Assets.xcassets */,
+				46D933EC25500D2E0090B458 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		46D933D525500D2C0090B458 = {
 			isa = PBXGroup;
 			children = (
@@ -56,13 +73,9 @@
 		46D933E025500D2C0090B458 /* 3Banko Admin */ = {
 			isa = PBXGroup;
 			children = (
-				46D933E125500D2C0090B458 /* AppDelegate.swift */,
-				46D933E325500D2C0090B458 /* SceneDelegate.swift */,
-				46D933E525500D2C0090B458 /* ViewController.swift */,
-				46D933E725500D2C0090B458 /* Main.storyboard */,
-				46D933EA25500D2E0090B458 /* Assets.xcassets */,
-				46D933EC25500D2E0090B458 /* LaunchScreen.storyboard */,
+				4625919C2550126900DCB4C5 /* Supporting Files */,
 				46D933EF25500D2E0090B458 /* Info.plist */,
+				462591992550125E00DCB4C5 /* Screens */,
 			);
 			path = "3Banko Admin";
 			sourceTree = "<group>";
@@ -126,7 +139,6 @@
 			files = (
 				46D933EE25500D2E0090B458 /* LaunchScreen.storyboard in Resources */,
 				46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */,
-				46D933E925500D2C0090B458 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,7 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46D933E625500D2C0090B458 /* ViewController.swift in Sources */,
+				46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */,
 				46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */,
 				46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */,
 			);
@@ -146,14 +158,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		46D933E725500D2C0090B458 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				46D933E825500D2C0090B458 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		46D933EC25500D2E0090B458 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
