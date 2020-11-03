@@ -19,14 +19,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let email = "muratbaykor@gmail.com"
         let passWord = "Murat1061*"
         
-        FirebaseManager.shared.authAdminWith(email: email, password: passWord) { (uid, error) in
-            if let error = error {
-                print("DEBUG: Error with admin login \(error)")
-            } else {
-                guard let uid = uid else { return }
-                print("DEBUG: Succesfully login with uid: \(uid)")
+        if Auth.auth().currentUser == nil {
+            FirebaseManager.shared.authAdminWith(email: email, password: passWord) { (uid, error) in
+                if let error = error {
+                    print("DEBUG: Error with admin login \(error)")
+                } else {
+                    guard let uid = uid else { return }
+                    print("DEBUG: Succesfully login with uid: \(uid)")
+                }
             }
+        } else {
+            print("DEBUG: Already succesfully login with uid: \(String(describing: Auth.auth().currentUser?.uid))")
+            
         }
+        
+        
         
         return true
     }
