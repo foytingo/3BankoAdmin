@@ -21,7 +21,13 @@ class PredictsVC: UIViewController {
         view.backgroundColor = .systemRed
         anonymousLogin()
         configureTableView()
+        //getAllPredicts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getAllPredicts()
+
     }
     
     @objc func addNewPredict() {
@@ -51,6 +57,7 @@ class PredictsVC: UIViewController {
             guard let _ = error else {
                 self.allPredictions = predictions
                 self.tableView.reloadData()
+                print("success gettin predicts")
                 return
             }
             print("DEBUG: error getting all predicts from database")
@@ -76,16 +83,24 @@ extension PredictsVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.accessoryType = .disclosureIndicator
-        cell.backgroundColor = .tertiarySystemBackground
         cell.textLabel?.text = allPredictions[indexPath.row]["date"] as? String
+        if allPredictions[indexPath.row]["isResulted"] as! Bool {
+            cell.isUserInteractionEnabled = false
+            cell.accessoryType = .none
+        } else {
+            cell.isUserInteractionEnabled = true
+            cell.accessoryType = .disclosureIndicator
+            cell.backgroundColor = .tertiarySystemBackground
+        }
+        
+        
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("DEBUG: Start update predict proccess")
+        presentResultCustomAlertOnMainThread(title: "Sonuc Gir", prediction: allPredictions[indexPath.row])
     }
     
     

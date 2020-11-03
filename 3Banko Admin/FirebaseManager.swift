@@ -75,6 +75,18 @@ struct FirebaseManager {
         
         db.collection("predicts").document(prediction.date).setData(["date": prediction.date, "id": prediction.id, "predict1": predict1, "predict2": predict2, "predict3": predict3], completion: completion)
     }
+    
+    
+    func updateMatchResult(date documentName: String, results:[String?], status: [Bool], isResulted: Bool, completion: @escaping(Error?) -> Void) {
+
+        
+        db.collection("predicts").document(documentName).updateData([
+            "isResulted": isResulted,
+            "predict1.result": results[0]!, "predict1.isOk": status[0],
+            "predict2.result": results[1]!, "predict2.isOk": status[1],
+            "predict3.result": results[2]!, "predict3.isOk": status[2],
+        ], completion: completion)
+    }
 }
 
 

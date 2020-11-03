@@ -17,6 +17,8 @@
 		469BC9DA2551496200EE1585 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9D92551496200EE1585 /* UIViewController+Ext.swift */; };
 		469BC9E32551569400EE1585 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 469BC9E22551569400EE1585 /* GoogleService-Info.plist */; };
 		469BC9F8255157EE00EE1585 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9F7255157EE00EE1585 /* FirebaseManager.swift */; };
+		469BC9FB2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9FA2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift */; };
+		469BC9FE25516DAA00EE1585 /* MatchUpdateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9FD25516DAA00EE1585 /* MatchUpdateView.swift */; };
 		46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E125500D2C0090B458 /* AppDelegate.swift */; };
 		46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E325500D2C0090B458 /* SceneDelegate.swift */; };
 		46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EA25500D2E0090B458 /* Assets.xcassets */; };
@@ -34,6 +36,8 @@
 		469BC9D92551496200EE1585 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		469BC9E22551569400EE1585 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		469BC9F7255157EE00EE1585 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		469BC9FA2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomUpdateResultAlertBoxViewController.swift; sourceTree = "<group>"; };
+		469BC9FD25516DAA00EE1585 /* MatchUpdateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchUpdateView.swift; sourceTree = "<group>"; };
 		46D933DE25500D2C0090B458 /* 3Banko Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3Banko Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D933E125500D2C0090B458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46D933E325500D2C0090B458 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				462591D42550709D00DCB4C5 /* CutomAlertBoxViewController.swift */,
+				469BC9FA2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -112,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				462591D7255071BC00DCB4C5 /* CustomAlertContainerView.swift */,
+				469BC9FD25516DAA00EE1585 /* MatchUpdateView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -289,9 +295,11 @@
 				462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */,
 				462591D52550709D00DCB4C5 /* CutomAlertBoxViewController.swift in Sources */,
 				46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */,
+				469BC9FE25516DAA00EE1585 /* MatchUpdateView.swift in Sources */,
 				462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */,
 				46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */,
 				469BC9DA2551496200EE1585 /* UIViewController+Ext.swift in Sources */,
+				469BC9FB2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
