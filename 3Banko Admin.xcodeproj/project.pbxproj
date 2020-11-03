@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		226B7406B8C8899BE472A3B7 /* Pods_3Banko_Admin.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8067910C39CE8121CBDF411 /* Pods_3Banko_Admin.framework */; };
 		46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */; };
 		462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591C32550192400DCB4C5 /* PredictsVC.swift */; };
 		462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591C925502FBB00DCB4C5 /* Prediction.swift */; };
@@ -15,6 +16,7 @@
 		462591D8255071BC00DCB4C5 /* CustomAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591D7255071BC00DCB4C5 /* CustomAlertContainerView.swift */; };
 		469BC9DA2551496200EE1585 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9D92551496200EE1585 /* UIViewController+Ext.swift */; };
 		469BC9E32551569400EE1585 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 469BC9E22551569400EE1585 /* GoogleService-Info.plist */; };
+		469BC9F8255157EE00EE1585 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9F7255157EE00EE1585 /* FirebaseManager.swift */; };
 		46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E125500D2C0090B458 /* AppDelegate.swift */; };
 		46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46D933E325500D2C0090B458 /* SceneDelegate.swift */; };
 		46D933EB25500D2E0090B458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 46D933EA25500D2E0090B458 /* Assets.xcassets */; };
@@ -22,6 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14947457CFFFC6E4F54BE0A6 /* Pods-3Banko Admin.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3Banko Admin.release.xcconfig"; path = "Target Support Files/Pods-3Banko Admin/Pods-3Banko Admin.release.xcconfig"; sourceTree = "<group>"; };
 		46259193255010A600DCB4C5 /* EnterPredictOfDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterPredictOfDayVC.swift; sourceTree = "<group>"; };
 		462591C32550192400DCB4C5 /* PredictsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PredictsVC.swift; sourceTree = "<group>"; };
 		462591C925502FBB00DCB4C5 /* Prediction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prediction.swift; sourceTree = "<group>"; };
@@ -30,12 +33,15 @@
 		462591D7255071BC00DCB4C5 /* CustomAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertContainerView.swift; sourceTree = "<group>"; };
 		469BC9D92551496200EE1585 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		469BC9E22551569400EE1585 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		469BC9F7255157EE00EE1585 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		46D933DE25500D2C0090B458 /* 3Banko Admin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "3Banko Admin.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		46D933E125500D2C0090B458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		46D933E325500D2C0090B458 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		46D933EA25500D2E0090B458 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		46D933ED25500D2E0090B458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		46D933EF25500D2E0090B458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A8067910C39CE8121CBDF411 /* Pods_3Banko_Admin.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_3Banko_Admin.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C868F3D7C08EB1B4BE9FAD1E /* Pods-3Banko Admin.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-3Banko Admin.debug.xcconfig"; path = "Target Support Files/Pods-3Banko Admin/Pods-3Banko Admin.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				226B7406B8C8899BE472A3B7 /* Pods_3Banko_Admin.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -114,6 +121,8 @@
 			children = (
 				46D933E025500D2C0090B458 /* 3Banko Admin */,
 				46D933DF25500D2C0090B458 /* Products */,
+				AAEC7E1A8452248ECA79F7E7 /* Pods */,
+				7B3BC31000699D515AD0BC86 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -137,8 +146,26 @@
 				469BC9DE255155DB00EE1585 /* ViewControllers */,
 				469BC9E0255155E300EE1585 /* Views */,
 				469BC9DC255155CA00EE1585 /* Extensions */,
+				469BC9F7255157EE00EE1585 /* FirebaseManager.swift */,
 			);
 			path = "3Banko Admin";
+			sourceTree = "<group>";
+		};
+		7B3BC31000699D515AD0BC86 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8067910C39CE8121CBDF411 /* Pods_3Banko_Admin.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AAEC7E1A8452248ECA79F7E7 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C868F3D7C08EB1B4BE9FAD1E /* Pods-3Banko Admin.debug.xcconfig */,
+				14947457CFFFC6E4F54BE0A6 /* Pods-3Banko Admin.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,9 +175,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 46D933F225500D2E0090B458 /* Build configuration list for PBXNativeTarget "3Banko Admin" */;
 			buildPhases = (
+				EC29C092B9C9171C3DC35E40 /* [CP] Check Pods Manifest.lock */,
 				46D933DA25500D2C0090B458 /* Sources */,
 				46D933DB25500D2C0090B458 /* Frameworks */,
 				46D933DC25500D2C0090B458 /* Resources */,
+				4812E9B06A00B6D0706A4786 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -206,6 +235,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		4812E9B06A00B6D0706A4786 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-3Banko Admin/Pods-3Banko Admin-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-3Banko Admin/Pods-3Banko Admin-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-3Banko Admin/Pods-3Banko Admin-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EC29C092B9C9171C3DC35E40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-3Banko Admin-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		46D933DA25500D2C0090B458 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -213,6 +284,7 @@
 			files = (
 				462591CF2550528900DCB4C5 /* SetFieldCell.swift in Sources */,
 				46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */,
+				469BC9F8255157EE00EE1585 /* FirebaseManager.swift in Sources */,
 				462591D8255071BC00DCB4C5 /* CustomAlertContainerView.swift in Sources */,
 				462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */,
 				462591D52550709D00DCB4C5 /* CutomAlertBoxViewController.swift in Sources */,
@@ -355,6 +427,7 @@
 		};
 		46D933F325500D2E0090B458 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C868F3D7C08EB1B4BE9FAD1E /* Pods-3Banko Admin.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -374,6 +447,7 @@
 		};
 		46D933F425500D2E0090B458 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14947457CFFFC6E4F54BE0A6 /* Pods-3Banko Admin.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
