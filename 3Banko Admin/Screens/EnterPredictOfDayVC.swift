@@ -49,6 +49,14 @@ class EnterPredictOfDayVC: UIViewController {
         let prediction = Prediction(date: date, id: id, predict0: predictArray[0], predict1: predictArray[1], predict2: predictArray[2])
         print("DEBUG: Prediction of day: \(prediction)")
         print("DEBUG: Done predict button.")
+        
+        FirebaseManager.shared.addNewPrediction(prediction: prediction) { (error) in
+            if let error = error {
+                print("DEBUG: Error adding new predict. \(error)")
+            }
+            print("DEBUG: Successfully added new predict and go back.")
+            self.navigationController?.popViewController(animated: true)
+        }
     }
     
     
@@ -83,7 +91,7 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 2
         case 1, 2, 3:
-            return 9
+            return 7
         default:
             fatalError("Unknown number of section")
         }
@@ -104,20 +112,13 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = cellTextLabels[indexPath.row]
             
             switch indexPath.row {
-            case 0:
-                cell.detailTextLabel?.text = "Otomatik Ayarlandi"
-                cell.isUserInteractionEnabled = false
-                cell.accessoryType = .none
+            case 0: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].uuid
             case 1: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].dateAndTime
             case 2: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].name
             case 3: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].org
             case 4: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].predict
             case 5: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].odd
             case 6: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isFree ? "Evet": "Hayir"
-            case 7,8:
-                cell.isUserInteractionEnabled = false
-                cell.detailTextLabel?.text = "Degistirilemez."
-                cell.accessoryType = .none
             default: fatalError("unknowns row")
             }
             

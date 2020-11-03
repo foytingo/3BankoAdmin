@@ -73,12 +73,7 @@ struct FirebaseManager {
                                        "result": prediction.predict2.result,
                                        "uuid": prediction.predict2.uuid]
         
-        db.collection("predicts").addDocument(data: [
-            "date": prediction.date,
-            "id": prediction.id,
-            "predict1": predict1,
-            "predict2": predict2,
-            "predict3": predict3], completion: completion)
+        db.collection("predicts").document(prediction.date).setData(["date": prediction.date, "id": prediction.id, "predict1": predict1, "predict2": predict2, "predict3": predict3], completion: completion)
     }
 }
 
