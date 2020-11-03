@@ -55,10 +55,10 @@ class EnterPredictOfDayVC: UIViewController {
     private func configureCells() {
         idCell.textLabel?.text = "ID"
         idCell.detailTextLabel?.text = "\(id)"
-        
+        idCell.isUserInteractionEnabled = false
         dateCell.textLabel?.text = "Tarih"
-        dateCell.accessoryType = .disclosureIndicator
         dateCell.detailTextLabel?.text = date
+        dateCell.isUserInteractionEnabled = false
         
     }
     
@@ -69,55 +69,7 @@ class EnterPredictOfDayVC: UIViewController {
         tableView.dataSource = self
         tableView.register(SetFieldCell.self, forCellReuseIdentifier: "Cell")
     }
-    
-    
-    private func setDateAndTime(cell: SetFieldCell, indexPath: IndexPath) {
-        let ac = UIAlertController(title: "Tarih ve Saat", message: "", preferredStyle: .alert)
-        ac.addTextField(configurationHandler: nil)
-        
-        let okAction = UIAlertAction(title: "Tamam", style: .default) { [weak self, weak ac] action in
-            guard let self = self else { return }
-            guard let textField = ac?.textFields?[0] else { return }
-            guard let text = textField.text else { return }
-            if text.isEmpty {
-                return
-            } else {
-                self.predictArray[indexPath.section - 1].dateAndTime = text
-                cell.detailTextLabel?.text = self.predictArray[indexPath.section - 1].dateAndTime
-                
-            }
-        }
-        
-        ac.view.layoutIfNeeded()
-        ac.addAction(okAction)
-        ac.addAction(UIAlertAction(title: "Iptal", style: .cancel))
-        
-        present(ac, animated: true)
-    }
-    
-    private func setDate() {
-        let ac = UIAlertController(title: "Tarih", message: "Tahmin tarihini ayarla", preferredStyle: .alert)
-        ac.addTextField(configurationHandler: nil)
-        
-        let okAction = UIAlertAction(title: "Tamam", style: .default) { [weak self, weak ac] action in
-            guard let self = self else { return }
-            guard let textField = ac?.textFields?[0] else { return }
-            guard let date = textField.text else { return }
-            
-            if date.isEmpty {
-                return
-            } else {
-                self.date = date
-                self.dateCell.detailTextLabel?.text = date
-            }
-        }
-        
-        ac.view.layoutIfNeeded()
-        ac.addAction(okAction)
-        ac.addAction(UIAlertAction(title: "Iptal", style: .cancel))
-        
-        present(ac, animated: true)
-    }
+
     
 }
 
@@ -152,15 +104,20 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
             cell.textLabel?.text = cellTextLabels[indexPath.row]
             
             switch indexPath.row {
-            case 0: cell.detailTextLabel?.text = "Goster"
+            case 0:
+                cell.detailTextLabel?.text = "Otomatik Ayarlandi"
+                cell.isUserInteractionEnabled = false
+                cell.accessoryType = .none
             case 1: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].dateAndTime
             case 2: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].name
             case 3: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].org
             case 4: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].predict
             case 5: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].odd
             case 6: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isFree ? "Evet": "Hayir"
-            case 7: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isOk ? "Tuttu": "Tutmadi"
-            case 8: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].result
+            case 7,8:
+                cell.isUserInteractionEnabled = false
+                cell.detailTextLabel?.text = "Degistirilemez."
+                cell.accessoryType = .none
             default: fatalError("unknowns row")
             }
             
@@ -190,20 +147,20 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             switch indexPath.row {
             case 0: print("DEBUG: ID cant change.")
-            case 1: setDate()
+            case 1: print("DEBUG: Date cant change.")
             default: fatalError("Unknown row in section 0")
             }
         case 1,2,3:
             switch indexPath.row {
             case 0: print("DEBUG: uuid of Tahmin: \(indexPath.section) = \(predictArray[indexPath.section-1].uuid)")
-            case 1: setDateAndTime(cell: tableView.cellForRow(at: indexPath) as! SetFieldCell, indexPath: indexPath)
-            case 2: print("kimle kim")
-            case 3: print("organization")
-            case 4: print("tahmin")
-            case 5: print("oran")
-            case 6: print("jetonlu")
-            case 7: print("durum")
-            case 8: print("sonuc")
+            case 1: presentCustomAlertOnMainThread(title: "Tarih ve Saat", alertType: .dateAndTime, delegate: self, indexPath: indexPath)
+            case 2: presentCustomAlertOnMainThread(title: "Kiminle Kim", alertType: .match, delegate: self, indexPath: indexPath)
+            case 3: presentCustomAlertOnMainThread(title: "Organizasyon", alertType: .org, delegate: self, indexPath: indexPath)
+            case 4: presentCustomAlertOnMainThread(title: "Tahminin Ne?", alertType: .predict, delegate: self, indexPath: indexPath)
+            case 5: presentCustomAlertOnMainThread(title: "Oran Kac", alertType: .odd, delegate: self, indexPath: indexPath)
+            case 6:
+                predictArray[indexPath.section - 1].isFree.toggle()
+                tableView.reloadRows(at: [indexPath], with: .automatic)
             default: fatalError("Unknown row in section 1")
             }
         default:
@@ -214,3 +171,29 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
     
     
 }
+
+extension EnterPredictOfDayVC: CutomAlertBoxViewControllerDelegate {
+    func didTapOkButton(type: AlertType, text: String, indexPath: IndexPath) {
+        switch type {
+        case .match:
+            print("DEBUG: Match is: \(text)")
+            predictArray[indexPath.section - 1].name = text
+        case .org:
+            print("DEBUG: Organisation is: \(text)")
+            predictArray[indexPath.section - 1].org = text
+        case .predict:
+            print("DEBUG: Predict is: \(text)")
+            predictArray[indexPath.section - 1].predict = text
+        case .odd:
+            print("DEBUG: Odd is: \(text)")
+            predictArray[indexPath.section - 1].odd = text
+        case .dateAndTime:
+            print("DEBUG: Date and time is: \(text)")
+            predictArray[indexPath.section - 1].dateAndTime = text
+        }
+        tableView.reloadData()
+    }
+    
+    
+}
+
