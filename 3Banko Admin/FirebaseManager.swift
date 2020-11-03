@@ -29,6 +29,20 @@ struct FirebaseManager {
         }
     }
     
+    
+    func authAdminWith(email: String, password: String, completion: @escaping(String? , Error?) -> Void) {
+        Auth.auth().signIn(withEmail: email, password: password) { (authData, error) in
+            guard let authData = authData else { return }
+            if let error = error {
+                completion(nil,error)
+            } else {
+                let uid = authData.user.uid
+                completion(uid,nil)
+            }
+        }
+    }
+    
+    
     func authAnonymous(completion: @escaping(String, Error?) -> Void) {
         var uid = ""
         Auth.auth().signInAnonymously { authResult, error in

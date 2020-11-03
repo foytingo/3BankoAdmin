@@ -19,9 +19,7 @@ class PredictsVC: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPredict))
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(infoButtonAction))
         view.backgroundColor = .systemRed
-        anonymousLogin()
         configureTableView()
-        //getAllPredicts()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,13 +82,14 @@ extension PredictsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         cell.textLabel?.text = allPredictions[indexPath.row]["date"] as? String
+        cell.backgroundColor = .tertiarySystemBackground
         if allPredictions[indexPath.row]["isResulted"] as! Bool {
             cell.isUserInteractionEnabled = false
             cell.accessoryType = .none
         } else {
             cell.isUserInteractionEnabled = true
             cell.accessoryType = .disclosureIndicator
-            cell.backgroundColor = .tertiarySystemBackground
+            
         }
         
         

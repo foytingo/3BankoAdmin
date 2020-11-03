@@ -15,6 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        let email = "muratbaykor@gmail.com"
+        let passWord = "Murat1061*"
+        
+        FirebaseManager.shared.authAdminWith(email: email, password: passWord) { (uid, error) in
+            if let error = error {
+                print("DEBUG: Error with admin login \(error)")
+            } else {
+                guard let uid = uid else { return }
+                print("DEBUG: Succesfully login with uid: \(uid)")
+            }
+        }
+        
         return true
     }
 
