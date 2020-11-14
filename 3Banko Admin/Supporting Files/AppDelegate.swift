@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
         
-        let email = "muratbaykor@gmail.com"
-        let passWord = "Murat1061*"
+        let email = " " //Admin email
+        let passWord = " " //Admin password
         
         if Auth.auth().currentUser == nil {
             FirebaseManager.shared.authAdminWith(email: email, password: passWord) { (uid, error) in
