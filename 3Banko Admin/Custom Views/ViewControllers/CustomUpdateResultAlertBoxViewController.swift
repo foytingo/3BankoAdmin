@@ -11,7 +11,7 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
 
     
     let containerView = CustomAlertContainerView()
-    let titleLabel = UILabel()
+    let titleLabel = BOATitleLabel(frame: .zero)
     
     let stackView = UIStackView()
     
@@ -19,7 +19,8 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
     let match2 = MatchUpdateView()
     let match3 = MatchUpdateView()
     
-    let okButton = UIButton()
+    let okButton = BOAButton(title: "Tamam", color: .systemBlue)
+    let cancelButton = BOAButton(title: "Iptal", color: .systemRed)
     
     var alertTitle: String?
     var prediction: [String: Any]?
@@ -38,38 +39,31 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        view.addSubview(containerView)
-        view.addSubview(titleLabel)
-        view.addSubview(stackView)
-        view.addSubview(okButton)
-        
+
         configureContainerView()
         configureTitleLabel()
         configureStackView()
-        configureButton()
-        
-        
-    
+        configureButtons()
     }
     
+    
     private func configureContainerView() {
+        view.addSubview(containerView)
+        
         NSLayoutConstraint.activate([
-            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: -80),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             containerView.widthAnchor.constraint(equalToConstant: 280),
-            containerView.heightAnchor.constraint(equalToConstant: 400)
+            containerView.heightAnchor.constraint(equalToConstant: 430)
         ])
     }
     
+    
     private func configureTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
         titleLabel.text = alertTitle ?? "Hata"
-        titleLabel.textColor = .label
-        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        titleLabel.textAlignment = .center
+
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
@@ -78,16 +72,17 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
         ])
     }
     
+    
     private func configureStackView() {
+        view.addSubview(stackView)
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.addArrangedSubview(match1)
-        stackView.addArrangedSubview(match2)
-        stackView.addArrangedSubview(match3)
         
-        match1.set(predict: prediction!["predict1"] as! [String: Any])
-        match2.set(predict: prediction!["predict2"] as! [String: Any])
-        match3.set(predict: prediction!["predict3"] as! [String: Any])
-        
+        let matchArray = [match1,match2,match3]
+        for (index,match) in matchArray.enumerated() {
+            stackView.addArrangedSubview(match)
+            match.set(predict: prediction!["predict\(index+1)"] as! [String : Any])
+        }
+
         stackView.distribution = .fillEqually
         stackView.axis = .vertical
         stackView.spacing = 10
@@ -101,20 +96,34 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
     }
     
     
-    
-    private func configureButton() {
-        okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.setTitle("Tamam", for: .normal)
+    private func configureButtons() {
+        view.addSubview(okButton)
         okButton.addTarget(self, action: #selector(okAction), for: .touchUpInside)
-        okButton.backgroundColor = .systemBlue
+
         NSLayoutConstraint.activate([
             okButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             okButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
             okButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
             okButton.heightAnchor.constraint(equalToConstant: 44)
         ])
+        
+        view.addSubview(cancelButton)
+        cancelButton.addTarget(self, action: #selector(cancelAction), for: .touchUpInside)
+
+        NSLayoutConstraint.activate([
+            cancelButton.topAnchor.constraint(equalTo: okButton.bottomAnchor, constant: 10),
+            cancelButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
+            cancelButton.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20),
+            cancelButton.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
+    
+    
+    @objc func cancelAction() {
+        self.dismiss(animated: true)
     }
 
+    
     @objc func okAction() {
         let results = [match1.textField.text ,match2.textField.text,match3.textField.text]
         let status = [match1.isOk,match2.isOk,match3.isOk]
@@ -122,14 +131,11 @@ class CustomUpdateResultAlertBoxViewController: UIViewController {
         let date = prediction?["date"] as! String
         
         FirebaseManager.shared.updateMatchResult(date: date, results: results, status: status, isResulted: true) { (error) in
-            if let error = error {
-                print("DEBUG: Error: \(error)")
+            if error != nil {
+                self.presentAlertWithOk(message: BOAErrors.updateError.rawValue)
             } else {
-                print("DEBUG: Successfulyy updated wit results.")
                 self.dismiss(animated: true)
             }
         }
-        
-        
     }
 }

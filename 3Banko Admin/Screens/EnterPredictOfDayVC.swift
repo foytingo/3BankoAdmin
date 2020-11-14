@@ -7,54 +7,57 @@
 
 import UIKit
 
-class EnterPredictOfDayVC: UIViewController {
+class EnterPredictOfDayVC: BOADataLoadingViewController {
     
     var date: String = ""
     var id = 0
 
     var predictArray = [
-        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0"),
-        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0"),
-        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: true, isOk: false, result: "0-0")
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: false, isOk: false, result: "0-0"),
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: false, isOk: false, result: "0-0"),
+        Predict(uuid: UUID().uuidString, dateAndTime: "", name: "", org: "", predict: "", odd: "", isFree: false, isOk: false, result: "0-0")
     ]
     
-    var cellTextLabels = ["UUID","Tarih ve Saat", "Kiminle kim?", "Organizasyon", "Tahmin", "Oran", "Jetonlu mu?", "Durum", "Sonuc"]
+    var cellTextLabels = ["UUID","Tarih ve Saat", "Kiminle kim?", "Organizasyon", "Tahmin", "Oran", "Bedava", "Durum", "Sonuc"]
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     
     var idCell = UITableViewCell(style: .value1, reuseIdentifier: "idCell")
-    var dateCell: UITableViewCell = UITableViewCell(style: .value1, reuseIdentifier: "dateCell")
+    var dateCell = UITableViewCell(style: .value1, reuseIdentifier: "dateCell")
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Tahmin Gir"
-        
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "d MMMM yyyy"
-        
-        let trLocale = Locale(identifier: "tr_TR")
-        dateFormatter.locale = trLocale
-        date = dateFormatter.string(from: Date())
-        
+        configureView()
+        date = currentDateWithFormatted()
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
-        
         configureTableView()
         configureCells()
         
     }
     
-    @objc func doneAction() {
-        let prediction = Prediction(date: date, id: id, predict0: predictArray[0], predict1: predictArray[1], predict2: predictArray[2])
-        print("DEBUG: Prediction of day: \(prediction)")
-        print("DEBUG: Done predict button.")
+    func configureView() {
+        title = "Tahmin Gir"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(doneAction))
         
+    }
+    
+    func currentDateWithFormatted() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM yyyy"
+        let trLocale = Locale(identifier: "tr_TR")
+        dateFormatter.locale = trLocale
+        
+        return dateFormatter.string(from: Date())
+    }
+    
+    @objc func doneAction() {
+        showLoadingView()
+        let prediction = Prediction(date: date, id: id, isResulted: false, predict0: predictArray[0], predict1: predictArray[1], predict2: predictArray[2])
         FirebaseManager.shared.addNewPrediction(prediction: prediction) { (error) in
-            if let error = error {
-                print("DEBUG: Error adding new predict. \(error)")
+            self.dismissLoadingView()
+            if error != nil {
+                self.presentAlertWithOk(message: BOAErrors.getAllPredictError.rawValue)
             }
-            print("DEBUG: Successfully added new predict and go back.")
             self.navigationController?.popViewController(animated: true)
         }
     }
@@ -67,8 +70,8 @@ class EnterPredictOfDayVC: UIViewController {
         dateCell.textLabel?.text = "Tarih"
         dateCell.detailTextLabel?.text = date
         dateCell.isUserInteractionEnabled = false
-        
     }
+    
     
     private func configureTableView() {
         view.addSubview(tableView)
@@ -106,11 +109,10 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
             case 1: return dateCell
             default: fatalError("Unknown row in section 0")
             }
+            
         case 1,2,3:
-        
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! SetFieldCell
             cell.textLabel?.text = cellTextLabels[indexPath.row]
-            
             switch indexPath.row {
             case 0: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].uuid
             case 1: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].dateAndTime
@@ -121,13 +123,12 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
             case 6: cell.detailTextLabel?.text = predictArray[indexPath.section - 1].isFree ? "Evet": "Hayir"
             default: fatalError("unknowns row")
             }
-            
-            
             return cell
+            
         default: fatalError()
         }
+        
     }
-    
     
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -140,21 +141,21 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        
         switch indexPath.section {
-        case 0:
-            switch indexPath.row {
-            case 0: print("DEBUG: ID cant change.")
-            case 1: print("DEBUG: Date cant change.")
-            default: fatalError("Unknown row in section 0")
-            }
+//        case 0:
+//            switch indexPath.row {
+//            case 0: print("DEBUG: ID cant change.")
+//            case 1: print("DEBUG: Date cant change.")
+//            default: fatalError("Unknown row in section 0")
+//            }
         case 1,2,3:
             switch indexPath.row {
-            case 0: print("DEBUG: uuid of Tahmin: \(indexPath.section) = \(predictArray[indexPath.section-1].uuid)")
-            case 1: presentCustomAlertOnMainThread(title: "Tarih ve Saat", alertType: .dateAndTime, delegate: self, indexPath: indexPath)
+//            case 0: print("DEBUG: uuid of Tahmin: \(indexPath.section) = \(predictArray[indexPath.section-1].uuid)")
+            case 1: presentCustomAlertOnMainThread(title: "saat", alertType: .dateAndTime, delegate: self, indexPath: indexPath)
             case 2: presentCustomAlertOnMainThread(title: "Kiminle Kim", alertType: .match, delegate: self, indexPath: indexPath)
             case 3: presentCustomAlertOnMainThread(title: "Organizasyon", alertType: .org, delegate: self, indexPath: indexPath)
             case 4: presentCustomAlertOnMainThread(title: "Tahminin Ne?", alertType: .predict, delegate: self, indexPath: indexPath)
@@ -169,28 +170,22 @@ extension EnterPredictOfDayVC: UITableViewDelegate, UITableViewDataSource {
         }
         
     }
-    
-    
 }
+
 
 extension EnterPredictOfDayVC: CutomAlertBoxViewControllerDelegate {
     func didTapOkButton(type: AlertType, text: String, indexPath: IndexPath) {
         switch type {
         case .match:
-            print("DEBUG: Match is: \(text)")
             predictArray[indexPath.section - 1].name = text
         case .org:
-            print("DEBUG: Organisation is: \(text)")
             predictArray[indexPath.section - 1].org = text
         case .predict:
-            print("DEBUG: Predict is: \(text)")
             predictArray[indexPath.section - 1].predict = text
         case .odd:
-            print("DEBUG: Odd is: \(text)")
             predictArray[indexPath.section - 1].odd = text
         case .dateAndTime:
-            print("DEBUG: Date and time is: \(text)")
-            predictArray[indexPath.section - 1].dateAndTime = text
+            predictArray[indexPath.section - 1].dateAndTime = "\(date) \(text)"
         }
         tableView.reloadData()
     }

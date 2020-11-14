@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PredictsVC: UIViewController {
+class PredictsVC: BOADataLoadingViewController {
     
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
         
@@ -15,29 +15,41 @@ class PredictsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Gunun Tahminleri"
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPredict))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(infoButtonAction))
-        view.backgroundColor = .systemRed
+        configureView()
         configureTableView()
     }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         getAllPredicts()
-
     }
     
+    
+    private func configureView() {
+        title = "Gunun Tahminleri"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addNewPredict))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), style: .plain, target: self, action: #selector(infoButtonAction))
+    }
+    
+    
     @objc func addNewPredict() {
-        print("DEBUG: Add new predict button.")
         let enterPredictOfDayVC = EnterPredictOfDayVC()
-        enterPredictOfDayVC.id = (allPredictions.first?["id"] as! Int) + 1
+        let id = allPredictions.first?["id"] as? Int == nil ? 0 : (allPredictions.first?["id"] as! Int) + 1
+        enterPredictOfDayVC.id = id
         navigationController?.pushViewController(enterPredictOfDayVC, animated: true)
     }
     
     
     @objc func infoButtonAction() {
-        print("DEBUG: Info button action")
+        presentAlertWithOk(message: BOAErrors.infoButton.rawValue)
+        FirebaseManager.shared.addDummyPrediction { (error) in
+            if let error = error {
+                print("DEBUG: Error adding dummy data: \(error)")
+            } else {
+                print("DEBUG: Successfully added dumy data.")
+            }
+        }
     }
     
     
@@ -50,34 +62,28 @@ class PredictsVC: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")
     }
     
+    
     private func getAllPredicts() {
+        showLoadingView()
         FirebaseManager.shared.getAllPredictions { predictions, error in
+            self.dismissLoadingView()
             guard let _ = error else {
                 self.allPredictions = predictions
                 self.tableView.reloadData()
-                print("success gettin predicts")
                 return
             }
-            print("DEBUG: error getting all predicts from database")
-        }
-    }
-    
-    private func anonymousLogin() {
-        FirebaseManager.shared.authAnonymous { (uid, error) in
-            guard let _ = error else {
-                print(uid)
-                return
-            }
-            print("DEBUG: Error login")
+            self.presentAlertWithOk(message: BOAErrors.getAllPredictError.rawValue)
         }
     }
 
 }
 
+
 extension PredictsVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allPredictions.count
     }
+    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
@@ -89,18 +95,14 @@ extension PredictsVC: UITableViewDelegate, UITableViewDataSource {
         } else {
             cell.isUserInteractionEnabled = true
             cell.accessoryType = .disclosureIndicator
-            
         }
-        
-        
         return cell
     }
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        presentResultCustomAlertOnMainThread(title: "Sonuc Gir", prediction: allPredictions[indexPath.row])
+        presentResultCustomAlertOnMainThread(title: "Sonuç Gir", prediction: allPredictions[indexPath.row])
     }
-    
-    
+ 
 }

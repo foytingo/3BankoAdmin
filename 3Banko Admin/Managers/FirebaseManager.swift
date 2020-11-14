@@ -87,7 +87,29 @@ struct FirebaseManager {
                                        "result": prediction.predict2.result,
                                        "uuid": prediction.predict2.uuid]
         
-        db.collection("predicts").document(prediction.date).setData(["date": prediction.date, "id": prediction.id, "predict1": predict1, "predict2": predict2, "predict3": predict3], completion: completion)
+        db.collection("predicts").document(prediction.date).setData(["date": prediction.date, "id": prediction.id, "isResulted": prediction.isResulted, "predict1": predict1, "predict2": predict2, "predict3": predict3], completion: completion)
+    }
+    
+    
+    func addDummyPrediction(completion: @escaping(Error?)-> Void) {
+
+        let predictModel = Predict(uuid: UUID().uuidString, dateAndTime: "6 Kasim 2020", name: "Galatasray - Fenerbahce", org: "Turkyie super lig", predict: "MS 1", odd: "2.00", isFree: true, isOk: false, result: "0-0")
+        
+        let predict: [String: Any] = ["date": predictModel.dateAndTime,
+                                       "isFree": predictModel.isFree,
+                                       "isOk": predictModel.isOk,
+                                       "name": predictModel.name,
+                                       "odd": predictModel.odd,
+                                       "organization": predictModel.org,
+                                       "prediction": predictModel.predict,
+                                       "result": predictModel.result,
+                                       "uuid": predictModel.uuid]
+        
+        
+        for index in 1...60 {
+            db.collection("predicts").document(String(index)).setData(["date": String(index), "id": index, "isResulted": false, "predict1": predict, "predict2": predict, "predict3": predict], completion: completion)
+        }
+    
     }
     
     

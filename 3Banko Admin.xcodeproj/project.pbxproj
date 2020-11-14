@@ -14,6 +14,11 @@
 		462591CF2550528900DCB4C5 /* SetFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591CE2550528800DCB4C5 /* SetFieldCell.swift */; };
 		462591D52550709D00DCB4C5 /* CutomAlertBoxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591D42550709D00DCB4C5 /* CutomAlertBoxViewController.swift */; };
 		462591D8255071BC00DCB4C5 /* CustomAlertContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 462591D7255071BC00DCB4C5 /* CustomAlertContainerView.swift */; };
+		464A6A01256028F100E97F8C /* BOADataLoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464A6A00256028F100E97F8C /* BOADataLoadingViewController.swift */; };
+		46690EB225554C1200386C43 /* BOATitleLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46690EB125554C1200386C43 /* BOATitleLabel.swift */; };
+		46690EB925554DC100386C43 /* BOAButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46690EB825554DC100386C43 /* BOAButton.swift */; };
+		46690EBC255551E900386C43 /* BOATextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46690EBB255551E900386C43 /* BOATextField.swift */; };
+		46690ECD2555547600386C43 /* BOAErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46690ECC2555547600386C43 /* BOAErrors.swift */; };
 		469BC9DA2551496200EE1585 /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9D92551496200EE1585 /* UIViewController+Ext.swift */; };
 		469BC9E32551569400EE1585 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 469BC9E22551569400EE1585 /* GoogleService-Info.plist */; };
 		469BC9F8255157EE00EE1585 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469BC9F7255157EE00EE1585 /* FirebaseManager.swift */; };
@@ -33,6 +38,11 @@
 		462591CE2550528800DCB4C5 /* SetFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetFieldCell.swift; sourceTree = "<group>"; };
 		462591D42550709D00DCB4C5 /* CutomAlertBoxViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CutomAlertBoxViewController.swift; sourceTree = "<group>"; };
 		462591D7255071BC00DCB4C5 /* CustomAlertContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertContainerView.swift; sourceTree = "<group>"; };
+		464A6A00256028F100E97F8C /* BOADataLoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOADataLoadingViewController.swift; sourceTree = "<group>"; };
+		46690EB125554C1200386C43 /* BOATitleLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOATitleLabel.swift; sourceTree = "<group>"; };
+		46690EB825554DC100386C43 /* BOAButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOAButton.swift; sourceTree = "<group>"; };
+		46690EBB255551E900386C43 /* BOATextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOATextField.swift; sourceTree = "<group>"; };
+		46690ECC2555547600386C43 /* BOAErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BOAErrors.swift; sourceTree = "<group>"; };
 		469BC9D92551496200EE1585 /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		469BC9E22551569400EE1585 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		469BC9F7255157EE00EE1585 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -96,6 +106,59 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		46690EBE2555539800386C43 /* Labels */ = {
+			isa = PBXGroup;
+			children = (
+				46690EB125554C1200386C43 /* BOATitleLabel.swift */,
+			);
+			path = Labels;
+			sourceTree = "<group>";
+		};
+		46690EC02555539F00386C43 /* TextFields */ = {
+			isa = PBXGroup;
+			children = (
+				46690EBB255551E900386C43 /* BOATextField.swift */,
+			);
+			path = TextFields;
+			sourceTree = "<group>";
+		};
+		46690EC3255553A900386C43 /* Buttons */ = {
+			isa = PBXGroup;
+			children = (
+				46690EB825554DC100386C43 /* BOAButton.swift */,
+			);
+			path = Buttons;
+			sourceTree = "<group>";
+		};
+		46690EC6255553B100386C43 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				469BC9F7255157EE00EE1585 /* FirebaseManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		46690EC9255553C200386C43 /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				462591D2255056A300DCB4C5 /* Cells */,
+				469BC9DE255155DB00EE1585 /* ViewControllers */,
+				469BC9E0255155E300EE1585 /* Views */,
+				46690EBE2555539800386C43 /* Labels */,
+				46690EC02555539F00386C43 /* TextFields */,
+				46690EC3255553A900386C43 /* Buttons */,
+			);
+			path = "Custom Views";
+			sourceTree = "<group>";
+		};
+		46690ECB2555546800386C43 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				46690ECC2555547600386C43 /* BOAErrors.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		469BC9DC255155CA00EE1585 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -109,6 +172,7 @@
 			children = (
 				462591D42550709D00DCB4C5 /* CutomAlertBoxViewController.swift */,
 				469BC9FA2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift */,
+				464A6A00256028F100E97F8C /* BOADataLoadingViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -143,16 +207,15 @@
 		46D933E025500D2C0090B458 /* 3Banko Admin */ = {
 			isa = PBXGroup;
 			children = (
+				46690ECB2555546800386C43 /* Helpers */,
 				4625919C2550126900DCB4C5 /* Supporting Files */,
 				46D933EF25500D2E0090B458 /* Info.plist */,
 				469BC9E22551569400EE1585 /* GoogleService-Info.plist */,
 				462591992550125E00DCB4C5 /* Screens */,
 				462591CC2550307000DCB4C5 /* Models */,
-				462591D2255056A300DCB4C5 /* Cells */,
-				469BC9DE255155DB00EE1585 /* ViewControllers */,
-				469BC9E0255155E300EE1585 /* Views */,
+				46690EC9255553C200386C43 /* Custom Views */,
 				469BC9DC255155CA00EE1585 /* Extensions */,
-				469BC9F7255157EE00EE1585 /* FirebaseManager.swift */,
+				46690EC6255553B100386C43 /* Managers */,
 			);
 			path = "3Banko Admin";
 			sourceTree = "<group>";
@@ -289,15 +352,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				462591CF2550528900DCB4C5 /* SetFieldCell.swift in Sources */,
+				464A6A01256028F100E97F8C /* BOADataLoadingViewController.swift in Sources */,
 				46259194255010A600DCB4C5 /* EnterPredictOfDayVC.swift in Sources */,
+				46690EB925554DC100386C43 /* BOAButton.swift in Sources */,
 				469BC9F8255157EE00EE1585 /* FirebaseManager.swift in Sources */,
 				462591D8255071BC00DCB4C5 /* CustomAlertContainerView.swift in Sources */,
 				462591CA25502FBB00DCB4C5 /* Prediction.swift in Sources */,
 				462591D52550709D00DCB4C5 /* CutomAlertBoxViewController.swift in Sources */,
+				46690EB225554C1200386C43 /* BOATitleLabel.swift in Sources */,
 				46D933E225500D2C0090B458 /* AppDelegate.swift in Sources */,
+				46690ECD2555547600386C43 /* BOAErrors.swift in Sources */,
 				469BC9FE25516DAA00EE1585 /* MatchUpdateView.swift in Sources */,
 				462591C42550192400DCB4C5 /* PredictsVC.swift in Sources */,
 				46D933E425500D2C0090B458 /* SceneDelegate.swift in Sources */,
+				46690EBC255551E900386C43 /* BOATextField.swift in Sources */,
 				469BC9DA2551496200EE1585 /* UIViewController+Ext.swift in Sources */,
 				469BC9FB2551637A00EE1585 /* CustomUpdateResultAlertBoxViewController.swift in Sources */,
 			);
@@ -449,7 +517,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.foytingo.-Banko-Admin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -469,7 +537,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.foytingo.-Banko-Admin";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

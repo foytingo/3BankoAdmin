@@ -13,8 +13,8 @@ protocol MatchUpdateViewDelegate: class {
 
 class MatchUpdateView: UIView {
 
-    let titleLabel = UILabel()
-    let textField = UITextField()
+    let titleLabel = BOATitleLabel(size: 18, weight: .regular)
+    let textField = BOATextField(placeholder: "Ornek 3-2")
     let toggleSwitch = UISwitch()
     
     var isOk: Bool = false
@@ -23,7 +23,6 @@ class MatchUpdateView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
         configureTitleLabel()
         configureTextField()
         configureToggleSwitch()
@@ -34,16 +33,10 @@ class MatchUpdateView: UIView {
     }
     
     
-    private func configure() {
-        
-    }
-    
     private func configureTitleLabel() {
         addSubview(titleLabel)
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.text = "Takim 1 - Takim 2"
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
@@ -52,13 +45,10 @@ class MatchUpdateView: UIView {
         ])
     }
     
+    
     private func configureTextField() {
         addSubview(textField)
-        textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.placeholder = "Ornek 3-2"
-        textField.textAlignment = .center
-        textField.layer.borderWidth = 0.5
-        textField.layer.borderColor = UIColor.systemGray.cgColor
+
         NSLayoutConstraint.activate([
             textField.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 5),
             textField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 10),
@@ -66,6 +56,7 @@ class MatchUpdateView: UIView {
             textField.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
+    
     
     private func configureToggleSwitch() {
         addSubview(toggleSwitch)
@@ -79,13 +70,13 @@ class MatchUpdateView: UIView {
         toggleSwitch.addTarget(self, action: #selector(isOkChange), for: .valueChanged)
     }
     
+    
     @objc func isOkChange() {
         isOk = toggleSwitch.isOn
     }
 
     
     func set(predict: [String: Any]) {
-        print((predict["isOk"] as? Bool)!)
         titleLabel.text = predict["name"] as? String
         textField.text = predict["result"] as? String
         toggleSwitch.isOn = (predict["isOk"] as? Bool)!

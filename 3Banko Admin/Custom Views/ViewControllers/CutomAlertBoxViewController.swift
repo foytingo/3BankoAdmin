@@ -18,9 +18,9 @@ protocol CutomAlertBoxViewControllerDelegate: class {
 class CutomAlertBoxViewController: UIViewController {
 
     let containerView = CustomAlertContainerView()
-    let titleLabel = UILabel()
+    let titleLabel = BOATitleLabel(frame: .zero)
     let textView = UITextView()
-    let okButton = UIButton()
+    let okButton = BOAButton(title: "Tamam", color: .systemBlue)
     
     var alertTitle: String?
     var alertType: AlertType?
@@ -35,29 +35,28 @@ class CutomAlertBoxViewController: UIViewController {
         self.indexPath = indexPath
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
-        view.addSubview(containerView)
-        view.addSubview(titleLabel)
-        view.addSubview(textView)
-        view.addSubview(okButton)
         
         configureContainerView()
         configureTitleLabel()
+        
         configureButton()
         configureTextView()
-        
     }
     
     
     private func configureContainerView() {
+        view.addSubview(containerView)
+        
         NSLayoutConstraint.activate([
             containerView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             containerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -66,12 +65,11 @@ class CutomAlertBoxViewController: UIViewController {
         ])
     }
     
+    
     private func configureTitleLabel() {
-        titleLabel.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(titleLabel)
         titleLabel.text = alertTitle ?? "Hata"
-        titleLabel.textColor = .label
-        titleLabel.font = UIFont.systemFont(ofSize: 25, weight: .bold)
-        titleLabel.textAlignment = .center
+        
         NSLayoutConstraint.activate([
             titleLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20),
             titleLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
@@ -80,11 +78,13 @@ class CutomAlertBoxViewController: UIViewController {
         ])
     }
     
+    
     private func configureTextView() {
+        view.addSubview(textView)
         textView.translatesAutoresizingMaskIntoConstraints = false
-        
         textView.layer.borderWidth = 1
         textView.layer.borderColor = UIColor.systemBlue.cgColor
+        
         NSLayoutConstraint.activate([
             textView.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 10),
             textView.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),
@@ -93,11 +93,11 @@ class CutomAlertBoxViewController: UIViewController {
         ])
     }
     
+    
     private func configureButton() {
-        okButton.translatesAutoresizingMaskIntoConstraints = false
-        okButton.setTitle("Tamam", for: .normal)
+        view.addSubview(okButton)
         okButton.addTarget(self, action: #selector(okAction), for: .touchUpInside)
-        okButton.backgroundColor = .systemBlue
+        
         NSLayoutConstraint.activate([
             okButton.bottomAnchor.constraint(equalTo: containerView.bottomAnchor, constant: -20),
             okButton.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20),

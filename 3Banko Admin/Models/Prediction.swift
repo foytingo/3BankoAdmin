@@ -10,6 +10,7 @@ import Foundation
 struct Prediction {
     var date: String
     var id: Int
+    var isResulted: Bool
     
     var predict0: Predict
     var predict1: Predict

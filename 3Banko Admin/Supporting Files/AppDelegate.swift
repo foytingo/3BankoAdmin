@@ -30,11 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         } else {
             print("DEBUG: Already succesfully login with uid: \(String(describing: Auth.auth().currentUser?.uid))")
-            
         }
-        
-        
-        
         return true
     }
 

@@ -18,13 +18,20 @@ extension UIViewController {
         }
     }
     
+    
     func presentResultCustomAlertOnMainThread(title: String, prediction: [String:Any]){
         DispatchQueue.main.async {
             let alertVC = CustomUpdateResultAlertBoxViewController(title: title, prediction: prediction)
-            //alertVC.customAlertViewDelegate = delegate
             alertVC.modalPresentationStyle = .fullScreen
             alertVC.modalTransitionStyle = .crossDissolve
             self.present(alertVC, animated: true)
         }
+    }
+    
+    
+    func presentAlertWithOk(message: String) {
+        let ac = UIAlertController(title: "Hata", message: message, preferredStyle: .alert)
+        ac.addAction(UIAlertAction(title: "Tamam", style: .default))
+        present(ac, animated: true)
     }
 }
