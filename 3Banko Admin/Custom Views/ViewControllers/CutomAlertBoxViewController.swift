@@ -8,7 +8,7 @@
 import UIKit
 
 enum AlertType {
-    case dateAndTime, match, org, predict, odd
+    case dateAndTime, match, org, predict, odd, url
 }
 
 protocol CutomAlertBoxViewControllerDelegate: class {
